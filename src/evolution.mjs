@@ -31,3 +31,10 @@ export const cellsComingToLife = (pattern) => {
     })
     return comesToAlive;
 }
+
+export const nextGeneration = (pattern) => {
+    const comesToAlive = cellsComingToLife(pattern)
+    const stayingAlive = cellsStayingAlive(pattern)
+    stayingAlive.livingCells.forEach(cell => comesToAlive.add(cell))
+    return comesToAlive;
+}

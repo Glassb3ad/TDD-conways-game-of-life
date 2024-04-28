@@ -40,4 +40,17 @@ export class Cell {
     leftUpNeighbour() {
         return new Cell(this.x - 1, this.y + 1)
     }
+
+    getAllNeighbours() {
+        return [
+            this.upNeighbour(),
+            this.rightUpNeighbour(),
+            this.rightNeighbour(),
+            this.rightDownNeighbour(),
+            this.downNeighbour(),
+            this.leftDownNeighbour(),
+            this.leftNeighbour(),
+            this.leftUpNeighbour()
+        ]
+    }
 }

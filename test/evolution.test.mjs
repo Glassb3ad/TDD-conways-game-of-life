@@ -2,7 +2,7 @@ import { describe, test } from "vitest";
 import { expect } from "chai";
 import { Pattern } from "../src/pattern.mjs";
 import { Cell } from "../src/cell.mjs";
-import { stayAlive, countLivingNeighbours } from "../src/evolution.mjs";
+import { stayAlive, countLivingNeighbours, comesToLife, nextLivingCells, nextCellsComingToLife } from "../src/evolution.mjs";
 
 
 describe("Test evolution", () => {
@@ -44,7 +44,6 @@ describe("Test evolution", () => {
         expect(stayAlive(cell, pattern)).toBe(true)
     });
 
-
     test("Cell with exactly 3 alive neighbours stays alive", () => {
         const pattern = new Pattern()
         const cell = new Cell(0, 0)
@@ -52,5 +51,43 @@ describe("Test evolution", () => {
         pattern.add(cell.leftNeighbour())
         pattern.add(cell.upNeighbour())
         expect(stayAlive(cell, pattern)).toBe(true)
+    });
+
+    test("Cell with exactly 3 neighbours comes to live", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        pattern.add(cell.downNeighbour())
+        pattern.add(cell.leftNeighbour())
+        expect(comesToLife(cell, pattern)).toBe(false)
+    });
+
+    test("Get cells that stay alive", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        pattern.add(cell)
+        pattern.add(cell.rightNeighbour())
+        const leftNeighbour = cell.leftNeighbour()
+        pattern.add(leftNeighbour)
+        pattern.add(leftNeighbour.leftNeighbour())
+        const newPattern = nextLivingCells(pattern)
+        expect(newPattern.amountOfLivingCells()).toBe(2)
+        expect(newPattern.isAlive(cell)).toBe(true)
+        expect(newPattern.isAlive(leftNeighbour)).toBe(true)
+    });
+
+    test("Get cells that come to alive", () => {
+        const pattern = new Pattern()
+        const comesToAlive1 = new Cell(1, 0)
+        const comesToAlive2 = new Cell(-1, 0)
+        const cell = new Cell(0, 0)
+        const cell2 = new Cell(0, 1)
+        const cell3 = new Cell(0, -1)
+        pattern.add(cell)
+        pattern.add(cell2)
+        pattern.add(cell3)
+        const newPattern = nextCellsComingToLife(pattern)
+        expect(newPattern.amountOfLivingCells()).toBe(2)
+        expect(newPattern.isAlive(comesToAlive1)).toBe(true)
+        expect(newPattern.isAlive(comesToAlive2)).toBe(true)
     });
 });

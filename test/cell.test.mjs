@@ -69,4 +69,17 @@ describe("Test Cell", () => {
         expect(leftNeighbour.x).to.equal(1);
         expect(leftNeighbour.y).to.equal(1);
     });
+
+    test("Get all neighbours", () => {
+        const cell = new Cell(0, 0)
+        const neighbours = cell.getAllNeighbours()
+        expect(neighbours.some(cell => cell.x === 0, cell.y === 1)).to.equal(true);
+        expect(neighbours.some(cell => cell.x === 1, cell.y === 1)).to.equal(true);
+        expect(neighbours.some(cell => cell.x === 1, cell.y === 0)).to.equal(true);
+        expect(neighbours.some(cell => cell.x === 1, cell.y === -1)).to.equal(true);
+        expect(neighbours.some(cell => cell.x === 0, cell.y === -1)).to.equal(true);
+        expect(neighbours.some(cell => cell.x === -1, cell.y === -1)).to.equal(true);
+        expect(neighbours.some(cell => cell.x === -1, cell.y === 0)).to.equal(true);
+        expect(neighbours.some(cell => cell.x === -1, cell.y === 1)).to.equal(true);
+    });
 });

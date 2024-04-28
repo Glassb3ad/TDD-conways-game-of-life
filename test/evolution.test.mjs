@@ -2,7 +2,7 @@ import { describe, test } from "vitest";
 import { expect } from "chai";
 import { Pattern } from "../src/pattern.mjs";
 import { Cell } from "../src/cell.mjs";
-import { stayAlive, countLivingNeighbours, comesToLife, nextLivingCells, nextCellsComingToLife } from "../src/evolution.mjs";
+import { stayAlive, countLivingNeighbours, comesToLife, cellsStayingAlive, cellsComingToLife } from "../src/evolution.mjs";
 
 
 describe("Test evolution", () => {
@@ -69,7 +69,7 @@ describe("Test evolution", () => {
         const leftNeighbour = cell.leftNeighbour()
         pattern.add(leftNeighbour)
         pattern.add(leftNeighbour.leftNeighbour())
-        const newPattern = nextLivingCells(pattern)
+        const newPattern = cellsStayingAlive(pattern)
         expect(newPattern.amountOfLivingCells()).toBe(2)
         expect(newPattern.isAlive(cell)).toBe(true)
         expect(newPattern.isAlive(leftNeighbour)).toBe(true)
@@ -85,7 +85,7 @@ describe("Test evolution", () => {
         pattern.add(cell)
         pattern.add(cell2)
         pattern.add(cell3)
-        const newPattern = nextCellsComingToLife(pattern)
+        const newPattern = cellsComingToLife(pattern)
         expect(newPattern.amountOfLivingCells()).toBe(2)
         expect(newPattern.isAlive(comesToAlive1)).toBe(true)
         expect(newPattern.isAlive(comesToAlive2)).toBe(true)

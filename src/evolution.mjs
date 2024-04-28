@@ -12,7 +12,7 @@ export const comesToLife = (cell, pattern) => {
     return !pattern.isAlive(cell) && countLivingNeighbours(cell, pattern) === 3
 }
 
-export const nextLivingCells = (pattern) => {
+export const cellsStayingAlive = (pattern) => {
     const livingCells = new Pattern()
     pattern.livingCells.forEach((cell) => {
         if (stayAlive(cell, pattern)) {
@@ -22,7 +22,7 @@ export const nextLivingCells = (pattern) => {
     return livingCells;
 }
 
-export const nextCellsComingToLife = (pattern) => {
+export const cellsComingToLife = (pattern) => {
     const comesToAlive = new Pattern()
     pattern.livingCells.forEach((cell) => {
         cell.getAllNeighbours().forEach(cell => {

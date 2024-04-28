@@ -43,4 +43,14 @@ describe("Test evolution", () => {
         pattern.add(cell.leftNeighbour())
         expect(stayAlive(cell, pattern)).toBe(true)
     });
+
+
+    test("Cell with exactly 3 alive neighbours stays alive", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        pattern.add(cell.downNeighbour())
+        pattern.add(cell.leftNeighbour())
+        pattern.add(cell.upNeighbour())
+        expect(stayAlive(cell, pattern)).toBe(true)
+    });
 });

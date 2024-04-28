@@ -31,6 +31,13 @@ export class Pattern {
         return Math.abs(downMost.y - upMost.y) + 1
     }
 
+    upLeftCell() {
+        const upMost = this.upMostCell()
+        const leftMost = this.leftMostCell()
+        return new Cell(leftMost.x, upMost.y)
+
+    }
+
     xMostCell(isMoreX) {
         if (this.amountOfLivingCells() === 0) return null;
         let xMostLivingCell;

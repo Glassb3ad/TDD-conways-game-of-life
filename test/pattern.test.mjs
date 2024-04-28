@@ -126,4 +126,17 @@ describe("Test Pattern", () => {
         const width = pattern.height()
         expect(width).toBe(3)
     })
+
+    test("get up-left cell", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(0, 1)
+        const cell2 = new Cell(0, 2)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        const upLeft = pattern.upLeftCell()
+        expect(upLeft.x).toBe(0)
+        expect(upLeft.y).toBe(2)
+    })
 });

@@ -21,17 +21,13 @@ export const nextLivingCells = (pattern) => {
     })
     return livingCells;
 }
+
 export const nextCellsComingToLife = (pattern) => {
     const comesToAlive = new Pattern()
     pattern.livingCells.forEach((cell) => {
-        if (comesToLife(cell.leftNeighbour(), pattern)) comesToAlive.add(cell.leftNeighbour())
-        if (comesToLife(cell.leftUpNeighbour(), pattern)) comesToAlive.add(cell.leftUpNeighbour())
-        if (comesToLife(cell.rightNeighbour(), pattern)) comesToAlive.add(cell.rightNeighbour())
-        if (comesToLife(cell.rightDownNeighbour(), pattern)) comesToAlive.add(cell.rightDownNeighbour())
-        if (comesToLife(cell.downNeighbour(), pattern)) comesToAlive.add(cell.downNeighbour())
-        if (comesToLife(cell.leftDownNeighbour(), pattern)) comesToAlive.add(cell.leftDownNeighbour())
-        if (comesToLife(cell.upNeighbour(), pattern)) comesToAlive.add(cell.upNeighbour())
-        if (comesToLife(cell.rightUpNeighbour(), pattern)) comesToAlive.add(cell.rightUpNeighbour())
+        cell.getAllNeighbours().forEach(cell => {
+            if (comesToLife(cell, pattern)) comesToAlive.add(cell)
+        })
     })
     return comesToAlive;
 }

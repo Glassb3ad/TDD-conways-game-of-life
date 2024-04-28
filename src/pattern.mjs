@@ -8,7 +8,7 @@ export class Pattern {
     }
 
     add(cell) {
-        this.livingCells.set(`x${cell.x}y${cell.y}`, cell)
+        this.livingCells.set(cell.toString(), cell)
     }
 
     isAlive(cell) {

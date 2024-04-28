@@ -20,4 +20,53 @@ describe("Test Cell", () => {
         expect(leftNeighbour.x).to.equal(-1);
         expect(leftNeighbour.y).to.equal(0);
     });
+
+    test("Get left-up neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.leftUpNeighbour()
+        expect(leftNeighbour.x).to.equal(-1);
+        expect(leftNeighbour.y).to.equal(1);
+    });
+
+    test("Get up neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.upNeighbour()
+        expect(leftNeighbour.x).to.equal(0);
+        expect(leftNeighbour.y).to.equal(1);
+    });
+
+    test("Get right-up neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.rightUpNeighbour()
+        expect(leftNeighbour.x).to.equal(1);
+        expect(leftNeighbour.y).to.equal(1);
+    });
+
+    test("Get right neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.rightNeighbour()
+        expect(leftNeighbour.x).to.equal(1);
+        expect(leftNeighbour.y).to.equal(0);
+    });
+
+    test("Get right-down neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.rightDownNeighbour()
+        expect(leftNeighbour.x).to.equal(1);
+        expect(leftNeighbour.y).to.equal(-1);
+    });
+
+    test("Get down neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.downNeighbour()
+        expect(leftNeighbour.x).to.equal(0);
+        expect(leftNeighbour.y).to.equal(-1);
+    });
+
+    test("Get left-down neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.leftDownNeighbour()
+        expect(leftNeighbour.x).to.equal(-1);
+        expect(leftNeighbour.y).to.equal(-1);
+    });
 });

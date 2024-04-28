@@ -28,20 +28,6 @@ describe("Test Cell", () => {
         expect(leftNeighbour.y).to.equal(1);
     });
 
-    test("Get up neighbour", () => {
-        const cell = new Cell(0, 0)
-        const leftNeighbour = cell.upNeighbour()
-        expect(leftNeighbour.x).to.equal(0);
-        expect(leftNeighbour.y).to.equal(1);
-    });
-
-    test("Get right-up neighbour", () => {
-        const cell = new Cell(0, 0)
-        const leftNeighbour = cell.rightUpNeighbour()
-        expect(leftNeighbour.x).to.equal(1);
-        expect(leftNeighbour.y).to.equal(1);
-    });
-
     test("Get right neighbour", () => {
         const cell = new Cell(0, 0)
         const leftNeighbour = cell.rightNeighbour()
@@ -68,5 +54,19 @@ describe("Test Cell", () => {
         const leftNeighbour = cell.leftDownNeighbour()
         expect(leftNeighbour.x).to.equal(-1);
         expect(leftNeighbour.y).to.equal(-1);
+    });
+
+    test("Get up neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.upNeighbour()
+        expect(leftNeighbour.x).to.equal(0);
+        expect(leftNeighbour.y).to.equal(1);
+    });
+
+    test("Get right-up neighbour", () => {
+        const cell = new Cell(0, 0)
+        const leftNeighbour = cell.rightUpNeighbour()
+        expect(leftNeighbour.x).to.equal(1);
+        expect(leftNeighbour.y).to.equal(1);
     });
 });

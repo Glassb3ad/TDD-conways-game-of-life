@@ -9,14 +9,6 @@ export class Cell {
         return `x${this.x}y${this.y}`
     }
 
-    leftNeighbour() {
-        return new Cell(this.x - 1, this.y)
-    }
-
-    leftUpNeighbour() {
-        return new Cell(this.x - 1, this.y + 1)
-    }
-
     upNeighbour() {
         return new Cell(this.x, this.y + 1)
     }
@@ -39,5 +31,13 @@ export class Cell {
 
     leftDownNeighbour() {
         return new Cell(this.x - 1, this.y - 1)
+    }
+
+    leftNeighbour() {
+        return new Cell(this.x - 1, this.y)
+    }
+
+    leftUpNeighbour() {
+        return new Cell(this.x - 1, this.y + 1)
     }
 }

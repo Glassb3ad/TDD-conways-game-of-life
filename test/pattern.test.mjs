@@ -46,7 +46,7 @@ describe("Test Pattern", () => {
         pattern.add(cell)
         pattern.add(cell2)
         const leftMost = pattern.leftMostCell()
-        expect(leftMost.x).toBe(-2)
+        expect(leftMost.x).toBe(-1)
     })
 
     test("Leftmost cell of empty pattern is null", () => {
@@ -62,7 +62,7 @@ describe("Test Pattern", () => {
         pattern.add(cell)
         pattern.add(cell2)
         const rightMost = pattern.rightMostCell()
-        expect(rightMost.x).toBe(2)
+        expect(rightMost.x).toBe(1)
     })
 
     test("Rightmost cell of empty pattern is null", () => {
@@ -78,7 +78,7 @@ describe("Test Pattern", () => {
         pattern.add(cell)
         pattern.add(cell2)
         const upMost = pattern.upMostCell()
-        expect(upMost.y).toBe(2)
+        expect(upMost.y).toBe(1)
     })
 
     test("upmost cell of empty pattern is null", () => {
@@ -94,12 +94,36 @@ describe("Test Pattern", () => {
         pattern.add(cell)
         pattern.add(cell2)
         const downMost = pattern.downMostCell()
-        expect(downMost.y).toBe(-1)
+        expect(downMost.y).toBe(0)
     })
 
     test("downmost cell of empty pattern is null", () => {
         const pattern = new Pattern()
         const downMost = pattern.downMostCell()
         expect(downMost).toBe(null)
+    })
+
+    test("get width of pattern", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(0, 1)
+        const cell2 = new Cell(0, 2)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        const width = pattern.width()
+        expect(width).toBe(1)
+    })
+
+    test("get height of pattern", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(0, 1)
+        const cell2 = new Cell(0, 2)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        const width = pattern.height()
+        expect(width).toBe(3)
     })
 });

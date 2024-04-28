@@ -17,14 +17,28 @@ export class Pattern {
         return this.livingCells.has(cell.toString())
     }
 
-    xMostCell(isMoreX, nextDeadCell) {
+    width() {
+        const leftMost = this.leftMostCell()
+        const rightMost = this.rightMostCell()
+        console.log({ leftMost, rightMost })
+        return Math.abs(leftMost.x - rightMost.x) + 1
+    }
+
+    height() {
+        const downMost = this.downMostCell()
+        const upMost = this.upMostCell()
+        console.log({ downMost, upMost })
+        return Math.abs(downMost.y - upMost.y) + 1
+    }
+
+    xMostCell(isMoreX) {
         if (this.amountOfLivingCells() === 0) return null;
         let xMostLivingCell;
         this.livingCells.forEach(cell => {
             if (!xMostLivingCell) xMostLivingCell = cell
             if (isMoreX(xMostLivingCell, cell)) xMostLivingCell = cell
         })
-        return nextDeadCell(xMostLivingCell)
+        return xMostLivingCell
 
     }
 
@@ -43,4 +57,5 @@ export class Pattern {
     downMostCell() {
         return this.xMostCell((pre, target) => (target.y < pre.y), (cell => new Cell(cell.x, cell.y - 1)));
     }
+
 }

@@ -24,8 +24,7 @@ export class Life {
 
     topLeftCell() {
         const leftMost = this.leftMostCell()
-        const upMost = this.life.map(pattern => pattern.upMostCell())
-            .filter(a => a !== null).map(a => a.y).sort().pop()
+        const upMost = this.upMostCell()
         return new Cell(leftMost, upMost)
     }
 
@@ -48,12 +47,20 @@ export class Life {
     }
 
     patternHeight() {
-        const downMost = this.life.map(pattern => pattern.downMostCell())
-            .filter(a => a !== null).map(a => a.y).sort()[0]
-        const upMost = this.life.map(pattern => pattern.upMostCell())
-            .filter(a => a !== null).map(a => a.y).sort().pop()
+        const downMost = this.downMostCell()
+        const upMost = this.upMostCell()
         if (downMost === undefined) return null
         const height = Math.abs(downMost - upMost) + 1
         return height
+    }
+
+    downMostCell() {
+        return this.life.map(pattern => pattern.downMostCell())
+            .filter(a => a !== null).map(a => a.y).sort()[0]
+    }
+
+    upMostCell() {
+        return this.life.map(pattern => pattern.upMostCell())
+            .filter(a => a !== null).map(a => a.y).sort().pop()
     }
 }

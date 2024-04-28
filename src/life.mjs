@@ -31,8 +31,7 @@ export class Life {
 
     patternWidth() {
         const leftMost = this.leftMostCell()
-        const rightMost = this.life.map(pattern => pattern.rightMostCell())
-            .filter(a => a !== null).map(a => a.x).sort().pop()
+        const rightMost = this.rightMostCell()
         if (leftMost === undefined) return null
         const distanceBetweenCells = Math.abs(leftMost - rightMost) + 1
         return distanceBetweenCells
@@ -41,6 +40,11 @@ export class Life {
     leftMostCell() {
         return this.life.map(pattern => pattern.leftMostCell())
             .filter(a => a !== null).map(a => a.x).sort()[0]
+    }
+
+    rightMostCell() {
+        return this.life.map(pattern => pattern.rightMostCell())
+            .filter(a => a !== null).map(a => a.x).sort().pop()
     }
 
     patternHeight() {

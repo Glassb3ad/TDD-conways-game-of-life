@@ -2,9 +2,19 @@ import { Cell } from "./cell.mjs"
 
 const DEATH_CELL = 'b'
 const ALIVE_CELL = 'o'
+const FILE_END = '!'
+const LINE_END = '$'
 export class Writer {
 
+    static patternToRLE(pattern) {
+        const heightWidth = `x=${pattern.width()} y=${pattern.height()}`
+        const lines = this.writePattern(pattern).join(`\n`)
+        return [heightWidth, lines, FILE_END].join(`\n`)
+    }
+
+
     static writePattern(pattern) {
+        if (pattern.amountOfLivingCells() === 0) return []
         const leftMostCell = pattern.upLeftCell()
         const width = pattern.width()
         const height = pattern.height()
@@ -43,6 +53,6 @@ export class Writer {
         if (alive !== 0) {
             res = res + `${alive}${ALIVE_CELL}`
         }
-        return res + "!"
+        return res + LINE_END
     }
 }

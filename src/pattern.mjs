@@ -20,14 +20,12 @@ export class Pattern {
     width() {
         const leftMost = this.leftMostCell()
         const rightMost = this.rightMostCell()
-        console.log({ leftMost, rightMost })
         return Math.abs(leftMost.x - rightMost.x) + 1
     }
 
     height() {
         const downMost = this.downMostCell()
         const upMost = this.upMostCell()
-        console.log({ downMost, upMost })
         return Math.abs(downMost.y - upMost.y) + 1
     }
 

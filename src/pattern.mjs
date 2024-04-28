@@ -12,6 +12,6 @@ export class Pattern {
     }
 
     isAlive(cell) {
-        return this.livingCells.has(`x${cell.x}y${cell.y}`)
+        return this.livingCells.has(cell.toString())
     }
 }

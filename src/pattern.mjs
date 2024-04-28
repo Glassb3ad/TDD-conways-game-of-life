@@ -17,25 +17,22 @@ export class Pattern {
         return this.livingCells.has(cell.toString())
     }
 
-    leftMostCell() {
+    xMostCell(isMoreX, nextDeadCell) {
         if (this.amountOfLivingCells() === 0) return null;
-        let leftMostLivingCell;
+        let xMostLivingCell;
         this.livingCells.forEach(cell => {
-            if (!leftMostLivingCell) leftMostLivingCell = cell
-            if (cell.x < leftMostLivingCell.x) leftMostLivingCell = cell
+            if (!xMostLivingCell) xMostLivingCell = cell
+            if (isMoreX(xMostLivingCell, cell)) xMostLivingCell = cell
         })
-        const leftMostCell = new Cell(leftMostLivingCell.x - 1, leftMostLivingCell.y)
-        return leftMostCell
+        return nextDeadCell(xMostLivingCell)
+
+    }
+
+    leftMostCell() {
+        return this.xMostCell((pre, target) => (target.x < pre.x), (cell => new Cell(cell.x - 1, cell.y)));
     }
 
     rightMostCell() {
-        if (this.amountOfLivingCells() === 0) return null;
-        let rightMostLivingCell;
-        this.livingCells.forEach(cell => {
-            if (!rightMostLivingCell) rightMostLivingCell = cell
-            if (cell.x > rightMostLivingCell.x) rightMostLivingCell = cell
-        })
-        const rightMostCell = new Cell(rightMostLivingCell.x + 1, rightMostLivingCell.y)
-        return rightMostCell
+        return this.xMostCell((pre, target) => (target.x > pre.x), (cell => new Cell(cell.x + 1, cell.y)));
     }
 }

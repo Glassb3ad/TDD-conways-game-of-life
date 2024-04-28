@@ -52,5 +52,19 @@ describe("Test life", () => {
         expect(life.patternHeight()).toBe(4)
     });
 
+    test("get top left cell of pattern", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(1, 0)
+        const cell2 = new Cell(2, 0)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        const life = new Life(pattern)
+        life.evolve(5)
+        const topLeft = life.topLeftCell()
+        expect(topLeft.y).toBe(2)
+        expect(topLeft.x).toBe(-1)
+    })
 
 });

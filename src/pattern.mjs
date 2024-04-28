@@ -35,4 +35,12 @@ export class Pattern {
     rightMostCell() {
         return this.xMostCell((pre, target) => (target.x > pre.x), (cell => new Cell(cell.x + 1, cell.y)));
     }
+
+    upMostCell() {
+        return this.xMostCell((pre, target) => (target.y > pre.y), (cell => new Cell(cell.x, cell.y + 1)));
+    }
+
+    downMostCell() {
+        return this.xMostCell((pre, target) => (target.y < pre.y), (cell => new Cell(cell.x, cell.y - 1)));
+    }
 }

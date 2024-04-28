@@ -22,38 +22,22 @@ export class Life {
     }
 
     patternWidth() {
-        const leftMost = this.life.map(pattern => pattern.leftMostCell()?.x)
-            .filter(a => a !== null).sort()[0]
-        const rightMost = this.life.map(pattern => pattern.rightMostCell()?.x).filter(a => a !== null).sort().pop()
+        const leftMost = this.life.map(pattern => pattern.leftMostCell())
+            .filter(a => a !== null).map(a => a.x).sort()[0]
+        const rightMost = this.life.map(pattern => pattern.rightMostCell())
+            .filter(a => a !== null).map(a => a.x).sort().pop()
         if (leftMost === undefined) return null
-        console.log({ leftMost, rightMost })
         const distanceBetweenCells = Math.abs(leftMost - rightMost) + 1
         return distanceBetweenCells
     }
 
     patternHeight() {
-        const downMost = this.life.map(pattern => {
-            let y = null;
-            pattern.livingCells.forEach(cell => {
-                if (y === null) y = cell.y
-                if (cell.y < y) y = cell.y
-            })
-            return y
-        }).sort().filter(a => a !== null)[0]
-        const upMost = this.life.map(pattern => {
-            let y = null;
-            pattern.livingCells.forEach(cell => {
-                console.log({ cell, y })
-                if (y === null) y = cell.y
-                if (cell.y > y) y = cell.y
-                console.log({ cell, y })
-            })
-            return y
-        }).filter(a => a !== null).sort().pop()
-        console.log({ downMost, upMost })
+        const downMost = this.life.map(pattern => pattern.downMostCell())
+            .filter(a => a !== null).map(a => a.y).sort()[0]
+        const upMost = this.life.map(pattern => pattern.upMostCell())
+            .filter(a => a !== null).map(a => a.y).sort().pop()
         if (downMost === undefined) return null
-        const distanceBetweenLivingCells = Math.abs(downMost - upMost) + 1
-        const distanceBetweenDeathCells = distanceBetweenLivingCells + 2
-        return distanceBetweenDeathCells
+        const height = Math.abs(downMost - upMost) + 1
+        return height
     }
 }

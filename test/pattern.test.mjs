@@ -70,4 +70,36 @@ describe("Test Pattern", () => {
         const rightMost = pattern.rightMostCell()
         expect(rightMost).toBe(null)
     })
+
+    test("Get upmost cell", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell2 = new Cell(0, 1)
+        pattern.add(cell)
+        pattern.add(cell2)
+        const upMost = pattern.upMostCell()
+        expect(upMost.y).toBe(2)
+    })
+
+    test("upmost cell of empty pattern is null", () => {
+        const pattern = new Pattern()
+        const upMost = pattern.upMostCell()
+        expect(upMost).toBe(null)
+    })
+
+    test("Get downmost cell", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell2 = new Cell(0, 1)
+        pattern.add(cell)
+        pattern.add(cell2)
+        const downMost = pattern.downMostCell()
+        expect(downMost.y).toBe(-1)
+    })
+
+    test("downmost cell of empty pattern is null", () => {
+        const pattern = new Pattern()
+        const downMost = pattern.downMostCell()
+        expect(downMost).toBe(null)
+    })
 });

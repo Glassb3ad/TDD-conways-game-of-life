@@ -5,7 +5,14 @@ const ALIVE_CELL = 'o'
 export class Writer {
 
     static writePattern(pattern) {
-
+        const leftMostCell = pattern.upLeftCell()
+        const width = pattern.width()
+        const height = pattern.height()
+        const lines = []
+        for (let i = 0; i < height; i++) {
+            lines.push(this.writePatternLine(pattern, { width, x: leftMostCell.x, y: leftMostCell.y - i }))
+        }
+        return lines
     }
 
     static writePatternLine(pattern, { width, x, y }) {

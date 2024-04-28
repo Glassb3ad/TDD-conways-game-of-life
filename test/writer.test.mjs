@@ -27,19 +27,25 @@ describe("Test life", () => {
         expect(Writer.writePatternLine(pattern, { width: 5, x: -1, y: 0 })).toBe("2o2b1o!")
     });
 
-    /*     test("Write pattern clitter", () => {
-            const pattern = new Pattern()
-            const cell = new Cell(0, 0)
-            const cell1 = new Cell(0, 1)
-            const cell2 = new Cell(0, 2)
-            pattern.add(cell);
-            pattern.add(cell1);
-            pattern.add(cell2);
-            expect(Writer.writePattern(pattern))
-                .toBe(`
-                1o1b1o!
-                1o1b1o!
-                1o1b1o!
-                `)
-        }); */
+    test("Write pattern with width 1", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(0, 1)
+        const cell2 = new Cell(0, 2)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        expect(Writer.writePattern(pattern)).toEqual(["1o!", "1o!", "1o!"])
+    });
+
+    test("Write pattern with width 3", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(1, 1)
+        const cell2 = new Cell(2, 2)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        expect(Writer.writePattern(pattern)).toEqual(["2b1o!", "1b1o1b!", "1o2b!"])
+    });
 });

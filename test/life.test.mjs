@@ -12,4 +12,13 @@ describe("Test life", () => {
         const life = new Life(pattern)
         expect(life.initialState().isAlive(cell)).toBe(true)
     });
+
+    test("Evolution steps are saved to life", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(1, 1)
+        pattern.add(cell);
+        const life = new Life(pattern)
+        life.evolve(1000)
+        expect(life.length()).toBe(1001)
+    });
 });

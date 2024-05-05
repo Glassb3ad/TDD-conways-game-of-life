@@ -22,7 +22,6 @@ export class Reader {
     }
 
     static extractLines(fileContent) {
-        console.log(fileContent)
         return fileContent.match(/(((\d)*o)|((\d)*b))+(\$|!)/g).map(str => str.substring(0, str.length - 1))
     }
 

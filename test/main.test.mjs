@@ -27,9 +27,40 @@ describe("Test main", () => {
     test("Test glider with 1 step", () => {
         main("test/testPatterns/glider.rle", 1)
         const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
-        expect(fileContent).toBe(`x=2 y=2
-2o$
-2o$
+        expect(fileContent).toBe(`x=3 y=3
+1o1b1o$
+1b2o$
+1b1o1b$
+!`)
+    });
+
+    test("Test glider with 2 step", () => {
+        main("test/testPatterns/glider.rle", 2)
+        const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
+        expect(fileContent).toBe(`x=3 y=3
+2b1o$
+1o1b1o$
+1b2o$
+!`)
+    });
+
+    test("Test glider with 2 step", () => {
+        main("test/testPatterns/glider.rle", 2)
+        const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
+        expect(fileContent).toBe(`x=3 y=3
+2b1o$
+1o1b1o$
+1b2o$
+!`)
+    });
+
+    test("Test glider with 3 step", () => {
+        main("test/testPatterns/glider.rle", 3)
+        const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
+        expect(fileContent).toBe(`x=3 y=3
+1o2b$
+1b2o$
+2o1b$
 !`)
     });
 });

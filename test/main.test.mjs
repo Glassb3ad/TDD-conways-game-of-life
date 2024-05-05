@@ -63,4 +63,14 @@ describe("Test main", () => {
 2o1b$
 !`)
     });
+
+    test("Test beehive with 6 steps", () => {
+        main("test/testPatterns/beehive.rle", 6)
+        const fileContent = fs.readFileSync("test/testPatterns/beehive_result.rle", "utf8")
+        expect(fileContent).toBe(`x=4 y=3
+1b2o1b$
+1o2b1o$
+1b2o1b$
+!`)
+    });
 });

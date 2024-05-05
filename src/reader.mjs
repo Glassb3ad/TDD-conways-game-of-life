@@ -20,10 +20,13 @@ export class Reader {
         return fileContent.match(/(((\d)+o)|((\d)+b))+(\$|!)/g).map(str => str.substring(0, str.length - 1))
     }
 
+    static readCellsFromLines(lines) {
+        return lines.reduce((acc, cur, i) => acc.concat(this.readCellsFromLine(cur, i)), [])
+    }
+
     static readCellsFromLine(line, y) {
         const tags = line.match(/((\d)+o)|((\d)+b)/g)
-/*         console.log(tags)
- */        const xOfLivingCells = tags.reduce((acc, cur) => {
+        const xOfLivingCells = tags.reduce((acc, cur) => {
             const livingCell = cur.includes(ALIVE_CELL)
             const tagCount = Number.parseInt(cur.slice(0, cur.length - 1))
             if (livingCell) {
@@ -38,8 +41,7 @@ export class Reader {
                 x: acc.x + tagCount
             }
         }, { cells: [], x: 0 })
-/*         console.log(xOfLivingCells)
- */        const livingCells = xOfLivingCells.cells.map(x => new Cell(x, y))
+        const livingCells = xOfLivingCells.cells.map(x => new Cell(x, y))
         return livingCells
     }
 }

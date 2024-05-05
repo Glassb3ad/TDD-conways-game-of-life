@@ -51,4 +51,10 @@ describe("Test life", () => {
         const cells = Reader.readCellsFromLine("2o2b1o", 1)
         expect(cells).toEqual([{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 4, y: 1 }])
     });
+
+    test("Extract cells from multiple lines", () => {
+        const cells = Reader.readCellsFromLines(["1o2b1o", "1o2b1o", "1o2b1o"])
+        expect(cells).toEqual([{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 1 }, { x: 3, y: 1 },
+        { x: 0, y: 2 }, { x: 3, y: 2 }])
+    });
 });

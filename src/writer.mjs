@@ -40,30 +40,30 @@ export class Writer {
     static writePatternLine(pattern, { width, x, y }) {
         let line = ""
         let count = 0
-        let deathCount = 0
-        let alive = 0
+        let deathCellCount = 0
+        let livingCellCount = 0
         while (count < width) {
             const isAlive = pattern.isAlive(new Cell(x + count, y))
             if (isAlive) {
-                alive++;
-                if (deathCount !== 0) {
-                    line = this.addDeathCells(line, deathCount)
-                    deathCount = 0
+                livingCellCount++;
+                if (deathCellCount !== 0) {
+                    line = this.addDeathCells(line, deathCellCount)
+                    deathCellCount = 0
                 }
             } else {
-                deathCount++;
-                if (alive !== 0) {
-                    line = this.addLivingCells(line, alive)
-                    alive = 0
+                deathCellCount++;
+                if (livingCellCount !== 0) {
+                    line = this.addLivingCells(line, livingCellCount)
+                    livingCellCount = 0
                 }
             }
             count++;
         }
-        if (deathCount !== 0) {
-            line = this.addDeathCells(line, deathCount)
+        if (deathCellCount !== 0) {
+            line = this.addDeathCells(line, deathCellCount)
         }
-        if (alive !== 0) {
-            line = this.addLivingCells(line, alive)
+        if (livingCellCount !== 0) {
+            line = this.addLivingCells(line, livingCellCount)
         }
         return line + LINE_END
     }

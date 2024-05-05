@@ -5,6 +5,14 @@ import { Cell } from "../src/cell.mjs";
 import { Writer } from "../src/writer.mjs";
 
 describe("Test life", () => {
+
+    test("Write tag and tag count", () => {
+        const line = "3b"
+        const tag = "o"
+        const tagCount = 2
+        expect(Writer.writeCountAndTag(line, tag, tagCount)).toBe("3b2o")
+    });
+
     test("Write a line of pattern", () => {
         const pattern = new Pattern()
         const cell = new Cell(0, 0)

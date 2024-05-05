@@ -25,6 +25,10 @@ export class Writer {
         return lines
     }
 
+    static writeCountAndTag(line, tag, count) {
+        return `${line}${count}${tag}`
+    }
+
     static writePatternLine(pattern, { width, x, y }) {
         let res = ""
         let count = 0

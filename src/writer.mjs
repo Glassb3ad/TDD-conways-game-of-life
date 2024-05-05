@@ -24,7 +24,7 @@ export class Writer {
         const width = pattern.width()
         const height = pattern.height()
         const lines = []
-        for (let i = 0; i < height; i++) {
+        for (let i = height - 1; i >= 0; i--) {
             lines.push(this.writePatternLine(pattern, { width, x: leftMostCell.x, y: leftMostCell.y - i }))
         }
         return lines

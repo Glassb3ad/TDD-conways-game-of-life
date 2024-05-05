@@ -22,7 +22,8 @@ export class Reader {
     }
 
     static extractLines(fileContent) {
-        return fileContent.match(/(((\d)+o)|((\d)+b))+(\$|!)/g).map(str => str.substring(0, str.length - 1))
+        console.log(fileContent)
+        return fileContent.match(/(((\d)*o)|((\d)*b))+(\$|!)/g).map(str => str.substring(0, str.length - 1))
     }
 
     static readCellsFromLines(lines) {
@@ -30,10 +31,10 @@ export class Reader {
     }
 
     static readCellsFromLine(line, y) {
-        const tags = line.match(/((\d)+o)|((\d)+b)/g)
+        const tags = line.match(/((\d)*o)|((\d)*b)/g)
         const xOfLivingCells = tags.reduce((acc, cur) => {
             const livingCell = cur.includes(ALIVE_CELL)
-            const tagCount = Number.parseInt(cur.slice(0, cur.length - 1))
+            const tagCount = Number.parseInt(cur.slice(0, cur.length - 1)) || 1
             if (livingCell) {
                 const newCells = Array(tagCount).fill(null).map((a, i) => i + acc.x)
                 return {

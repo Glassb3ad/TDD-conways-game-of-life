@@ -42,6 +42,12 @@ describe("Test life", () => {
         expect(cells).toEqual([{ x: 0, y: 2 }])
     });
 
+    test("Extract cells from pattern with only single o cell without count tag", () => {
+        const cells = Reader.readCellsFromLine("o", 2)
+        expect(cells).toEqual([{ x: 0, y: 2 }])
+    });
+
+
     test("Extract cells from pattern with multiple o cells", () => {
         const cells = Reader.readCellsFromLine("2o", 2)
         expect(cells).toEqual([{ x: 0, y: 2 }, { x: 1, y: 2 }])

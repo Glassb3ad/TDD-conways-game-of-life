@@ -67,7 +67,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePattern(pattern)).toEqual(["2b1o$", "1b1o1b$", "1o2b$"])
+        expect(Writer.writePattern(pattern)).toEqual(["1o2b$", "1b1o1b$", "2b1o$"])
     });
 
     test("Write empty pattern", () => {
@@ -90,7 +90,21 @@ describe("Test life", () => {
 !`)
     });
 
-    test("Write file content for blinker pattern", () => {
+    test("Write file content for glider pattern", () => {
+        const pattern = new Pattern()
+        pattern.add(new Cell(1, 0));
+        pattern.add(new Cell(2, 1));
+        pattern.add(new Cell(0, 2));
+        pattern.add(new Cell(1, 2));
+        pattern.add(new Cell(2, 2));
+        expect(Writer.patternToRLE(pattern)).toEqual(`x=3 y=3
+1b1o1b$
+2b1o$
+3o$
+!`)
+    });
+
+    test("Write file content for pattern", () => {
         const pattern = new Pattern()
         const cell = new Cell(0, 0)
         pattern.add(cell);

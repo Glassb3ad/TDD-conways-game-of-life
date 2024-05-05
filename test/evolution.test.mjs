@@ -2,7 +2,7 @@ import { describe, test } from "vitest";
 import { expect } from "chai";
 import { Pattern } from "../src/pattern.mjs";
 import { Cell } from "../src/cell.mjs";
-import { stayAlive, countLivingNeighbours, comesToLife, cellsStayingAlive, cellsComingToLife, nextGeneration } from "../src/evolution.mjs";
+import { stayAlive, countLivingNeighbours, comesToLife, cellsStayingAlive, cellsComingToLife, nextGeneration, generationN } from "../src/evolution.mjs";
 
 
 describe("Test evolution", () => {
@@ -106,5 +106,22 @@ describe("Test evolution", () => {
         expect(newPattern.isAlive(comesToAlive1)).toBe(true)
         expect(newPattern.isAlive(comesToAlive2)).toBe(true)
         expect(newPattern.isAlive(comesToAlive2)).toBe(true)
+    });
+
+    test("Get fourth generation", () => {
+        const pattern = new Pattern()
+        const comesToAlive1 = new Cell(0, 1)
+        const comesToAlive2 = new Cell(-1, 1)
+        const comesToAlive3 = new Cell(1, 1)
+        const cell = new Cell(0, 0)
+        const cell2 = new Cell(0, 1)
+        const cell3 = new Cell(0, 2)
+        pattern.add(cell)
+        pattern.add(cell2)
+        pattern.add(cell3)
+        const newPattern = generationN(pattern, 3)
+        expect(newPattern.isAlive(comesToAlive1)).toBe(true)
+        expect(newPattern.isAlive(comesToAlive2)).toBe(true)
+        expect(newPattern.isAlive(comesToAlive3)).toBe(true)
     });
 });

@@ -38,3 +38,8 @@ export const nextGeneration = (pattern) => {
     stayingAlive.livingCells.forEach(cell => comesToAlive.add(cell))
     return comesToAlive;
 }
+
+export const generationN = (pattern, n) => {
+    if (n === 0) return pattern
+    return generationN(nextGeneration(pattern), n - 1)
+}

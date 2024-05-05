@@ -13,6 +13,12 @@ describe("Test life", () => {
         expect(x).toBe(1)
     });
 
+    test("Read two-digit x value from rle file", () => {
+        const fileContent = fs.readFileSync("test/test_large.rle", "utf8")
+        const x = Reader.readX(fileContent)
+        expect(x).toBe(10)
+    });
+
     test("Read y value from rle file", () => {
         const fileContent = fs.readFileSync("test/test_file.rle", "utf8")
         const x = Reader.readY(fileContent)

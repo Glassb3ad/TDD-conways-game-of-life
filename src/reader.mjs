@@ -8,7 +8,6 @@ const LINE_END = '$' */
 export class Reader {
     static readX(fileContent) {
         return Number.parseInt(fileContent.match(/x=(\d)*/g)[0].slice(2))
-
     }
 
     static readY(fileContent) {

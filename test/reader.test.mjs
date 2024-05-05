@@ -7,9 +7,15 @@ import fs from "node:fs"
 
 describe("Test life", () => {
 
-    test("Write tag and tag count", () => {
+    test("Read x value from rle file", () => {
         const fileContent = fs.readFileSync("test/test_file.rle", "utf8")
         const x = Reader.readX(fileContent)
         expect(x).toBe(1)
+    });
+
+    test("Read y value from rle file", () => {
+        const fileContent = fs.readFileSync("test/test_file.rle", "utf8")
+        const x = Reader.readY(fileContent)
+        expect(x).toBe(3)
     });
 });

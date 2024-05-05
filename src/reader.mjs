@@ -12,4 +12,8 @@ export class Reader {
         const valueOfX = fileContent.substring(startX + 2, startY - 1)
         return Number.parseInt(valueOfX)
     }
+
+    static readY(fileContent) {
+        return Number.parseInt(fileContent.match(/y=(\d)*/g)[0].slice(2))
+    }
 }

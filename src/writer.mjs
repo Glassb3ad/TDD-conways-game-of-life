@@ -52,7 +52,7 @@ export class Writer {
             count++;
         }
         if (death !== 0) {
-            res = res + `${death}${DEATH_CELL}`
+            res = this.writeCountAndTag(res, DEATH_CELL, death)
         }
         if (alive !== 0) {
             res = res + `${alive}${ALIVE_CELL}`

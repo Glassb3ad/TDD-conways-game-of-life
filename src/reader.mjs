@@ -2,10 +2,7 @@ import fs from "node:fs"
 import { Cell } from "./cell.mjs"
 import { Pattern } from "./pattern.mjs"
 
-/* const DEATH_CELL = 'b' */
 const ALIVE_CELL = 'o'
-/*const FILE_END = '!'
-const LINE_END = '$' */
 export class Reader {
 
     static readRLE(filePath) {

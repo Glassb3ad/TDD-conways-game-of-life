@@ -38,7 +38,7 @@ export class Writer {
     }
 
     static writePatternLine(pattern, { width, x, y }) {
-        let res = ""
+        let line = ""
         let count = 0
         let deathCount = 0
         let alive = 0
@@ -47,24 +47,24 @@ export class Writer {
             if (isAlive) {
                 alive++;
                 if (deathCount !== 0) {
-                    res = this.addDeathCells(res, deathCount)
+                    line = this.addDeathCells(line, deathCount)
                     deathCount = 0
                 }
             } else {
                 deathCount++;
                 if (alive !== 0) {
-                    res = this.addLivingCells(res, alive)
+                    line = this.addLivingCells(line, alive)
                     alive = 0
                 }
             }
             count++;
         }
         if (deathCount !== 0) {
-            res = this.addDeathCells(res, deathCount)
+            line = this.addDeathCells(line, deathCount)
         }
         if (alive !== 0) {
-            res = this.addLivingCells(res, alive)
+            line = this.addLivingCells(line, alive)
         }
-        return res + LINE_END
+        return line + LINE_END
     }
 }

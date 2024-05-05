@@ -53,7 +53,7 @@ export class Writer {
             } else {
                 deathCount++;
                 if (alive !== 0) {
-                    res = res + `${alive}${ALIVE_CELL}`
+                    res = this.addLivingCells(res, alive)
                     alive = 0
                 }
             }

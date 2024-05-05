@@ -3,6 +3,7 @@ import { expect } from "chai";
 import { Pattern } from "../src/pattern.mjs";
 import { Cell } from "../src/cell.mjs";
 import { Writer } from "../src/writer.mjs";
+import fs from "node:fs"
 
 describe("Test life", () => {
 
@@ -87,5 +88,18 @@ describe("Test life", () => {
 1o$
 1o$
 !`)
+    });
+
+    test("Write file content for blinker pattern", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        pattern.add(cell);
+        const fileName = "file"
+        Writer.writeRLE(fileName, pattern)
+        const fileExists = fs.existsSync(`${fileName}.rle`);
+        if (fileExists) {
+            fs.unlinkSync(`${fileName}.rle`)
+        }
+        expect(fileExists).toBe(true);
     });
 });

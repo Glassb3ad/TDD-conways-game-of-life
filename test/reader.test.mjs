@@ -24,4 +24,16 @@ describe("Test life", () => {
         const x = Reader.readY(fileContent)
         expect(x).toBe(3)
     });
+
+    test("Extract lines from pattern with only o cells", () => {
+        const fileContent = fs.readFileSync("test/test_file.rle", "utf8")
+        const x = Reader.extractLines(fileContent)
+        expect(x).toEqual(["1o", "1o", "1o"])
+    });
+
+    test("Extract lines from pattern with both o and b cells", () => {
+        const fileContent = fs.readFileSync("test/test_large.rle", "utf8")
+        const x = Reader.extractLines(fileContent)
+        expect(x).toEqual(["1o8b1o", "1o8b1o", "1o8b1o"])
+    });
 });

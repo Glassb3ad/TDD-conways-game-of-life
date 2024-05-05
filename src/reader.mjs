@@ -13,4 +13,8 @@ export class Reader {
     static readY(fileContent) {
         return Number.parseInt(fileContent.match(/y=(\d)*/g)[0].slice(2))
     }
+
+    static extractLines(fileContent) {
+        return fileContent.match(/(((\d)+o)|((\d)+b))+(\$|!)/g).map(str => str.substring(0, str.length - 1))
+    }
 }

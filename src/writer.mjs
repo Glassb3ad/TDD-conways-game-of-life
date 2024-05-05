@@ -29,6 +29,10 @@ export class Writer {
         return `${line}${count}${tag}`
     }
 
+    static addDeathCells(line, count) {
+        return this.writeCountAndTag(line, DEATH_CELL, count)
+    }
+
     static writePatternLine(pattern, { width, x, y }) {
         let res = ""
         let count = 0

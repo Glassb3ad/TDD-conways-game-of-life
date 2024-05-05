@@ -1,7 +1,7 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
 // import { Pattern } from "../src/pattern.mjs";
-// import { Cell } from "../src/cell.mjs";
+import { Cell } from "../src/cell.mjs";
 import { Reader } from "../src/reader.mjs";
 import fs from "node:fs"
 
@@ -56,5 +56,12 @@ describe("Test life", () => {
         const cells = Reader.readCellsFromLines(["1o2b1o", "1o2b1o", "1o2b1o"])
         expect(cells).toEqual([{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 1 }, { x: 3, y: 1 },
         { x: 0, y: 2 }, { x: 3, y: 2 }])
+    });
+
+    test("Read file to pattern", () => {
+        const pattern = Reader.readRLE("test/test_file.rle")
+        expect(pattern.isAlive(new Cell(0, 0))).toBe(true)
+        expect(pattern.isAlive(new Cell(0, 1))).toBe(true)
+        expect(pattern.isAlive(new Cell(0, 2))).toBe(true)
     });
 });

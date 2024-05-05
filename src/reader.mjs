@@ -1,13 +1,21 @@
-// import { Cell } from "./cell.mjs"
-// import fs from "node:fs"
-
+import fs from "node:fs"
 import { Cell } from "./cell.mjs"
+import { Pattern } from "./pattern.mjs"
 
 /* const DEATH_CELL = 'b' */
 const ALIVE_CELL = 'o'
 /*const FILE_END = '!'
 const LINE_END = '$' */
 export class Reader {
+
+    static readRLE(filePath) {
+        const fileContent = fs.readFileSync(filePath, "utf8")
+        const pattern = new Pattern()
+        const cells = this.readCellsFromLines(this.extractLines(fileContent))
+        cells.forEach(cell => pattern.add(cell))
+        return pattern
+    }
+
     static readX(fileContent) {
         return Number.parseInt(fileContent.match(/x=(\d)*/g)[0].slice(2))
     }

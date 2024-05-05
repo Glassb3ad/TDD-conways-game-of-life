@@ -36,4 +36,14 @@ describe("Test life", () => {
         const x = Reader.extractLines(fileContent)
         expect(x).toEqual(["1o8b1o", "1o8b1o", "1o8b1o"])
     });
+
+    test("Extract cells from pattern with only single o cell", () => {
+        const cells = Reader.readCellsFromLine("1o", 2)
+        expect(cells).toEqual([{ x: 0, y: 2 }])
+    });
+
+    test("Extract cells from pattern with multiple o cells", () => {
+        const cells = Reader.readCellsFromLine("2o", 2)
+        expect(cells).toEqual([{ x: 0, y: 2 }, { x: 1, y: 2 }])
+    });
 });

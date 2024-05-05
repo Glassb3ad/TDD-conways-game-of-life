@@ -19,6 +19,12 @@ describe("Test life", () => {
         expect(Writer.addDeathCells(line, tagCount)).toBe("3b2b")
     });
 
+    test("Add living cells to line", () => {
+        const line = "3b"
+        const tagCount = 2
+        expect(Writer.addLivingCells(line, tagCount)).toBe("3b2o")
+    });
+
     test("Write a line of pattern", () => {
         const pattern = new Pattern()
         const cell = new Cell(0, 0)

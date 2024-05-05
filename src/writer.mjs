@@ -33,6 +33,10 @@ export class Writer {
         return this.writeCountAndTag(line, DEATH_CELL, count)
     }
 
+    static addLivingCells(line, count) {
+        return this.writeCountAndTag(line, ALIVE_CELL, count)
+    }
+
     static writePatternLine(pattern, { width, x, y }) {
         let res = ""
         let count = 0

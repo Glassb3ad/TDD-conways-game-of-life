@@ -7,10 +7,8 @@ const FILE_END = '!'
 const LINE_END = '$' */
 export class Reader {
     static readX(fileContent) {
-        const startX = fileContent.indexOf("x=")
-        const startY = fileContent.indexOf("y=")
-        const valueOfX = fileContent.substring(startX + 2, startY - 1)
-        return Number.parseInt(valueOfX)
+        return Number.parseInt(fileContent.match(/x=(\d)*/g)[0].slice(2))
+
     }
 
     static readY(fileContent) {

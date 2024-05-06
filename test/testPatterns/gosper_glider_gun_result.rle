@@ -1,4 +1,4 @@
-x=36 y=9
+x=43 y=30
 23b2o$
 23b2o$
 10bo4bo10b2o6b2o$
@@ -7,4 +7,13 @@ x=36 y=9
 2o4b2o11b2o2b2o$
 6b2o8b2o2bo2b2o$
 8bobo5b4o$
-10bo7bo!
+10bo7bo4$
+25bobo$
+26b2o$
+26bo5$
+33bo$
+34b2o$
+33b2o6$
+40bobo$
+41b2o$
+41bo!

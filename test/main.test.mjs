@@ -11,8 +11,7 @@ describe("Test main", () => {
         expect(fileContent).toBe(`x=1 y=3
 o$
 o$
-o$
-!`)
+o!`)
     });
 
     test("Test block with 100 steps", () => {
@@ -20,8 +19,7 @@ o$
         const fileContent = fs.readFileSync("test/testPatterns/block_result.rle", "utf8")
         expect(fileContent).toBe(`x=2 y=2
 2o$
-2o$
-!`)
+2o!`)
     });
 
     test("Test glider with 1 step", () => {
@@ -30,8 +28,7 @@ o$
         expect(fileContent).toBe(`x=3 y=3
 obo$
 b2o$
-bo$
-!`)
+bo!`)
     });
 
     test("Test glider with 2 step", () => {
@@ -40,8 +37,7 @@ bo$
         expect(fileContent).toBe(`x=3 y=3
 2bo$
 obo$
-b2o$
-!`)
+b2o!`)
     });
 
     test("Test glider with 2 step", () => {
@@ -50,8 +46,7 @@ b2o$
         expect(fileContent).toBe(`x=3 y=3
 2bo$
 obo$
-b2o$
-!`)
+b2o!`)
     });
 
     test("Test glider with 3 step", () => {
@@ -60,8 +55,7 @@ b2o$
         expect(fileContent).toBe(`x=3 y=3
 o$
 b2o$
-2o$
-!`)
+2o!`)
     });
 
     test("Test beehive with 6 steps", () => {
@@ -70,54 +64,118 @@ b2o$
         expect(fileContent).toBe(`x=4 y=3
 b2o$
 o2bo$
-b2o$
-!`)
+b2o!`)
     });
 
-    /*     test("Test gosper glider gun with 300 steps", () => {
-            main("test/testPatterns/gosper_glider_gun.rle", 300)
-            const fileContent = fs.readFileSync("test/testPatterns/gosper_glider_gun_result.rle", "utf8")
-            expect(fileContent).toBe(`x = 93, y = 80
-    24bo$
-    22bobo$
-    12b2o6b2o12b2o$
-    11bo3bo4b2o12b2o$
-    2o8bo5bo3b2o$
-    2o8bo3bob2o4bobo$
-    10bo5bo7bo$
-    11bo3bo$
-    12b2o$
-    23bo$
-    24b2o$
-    23b2o6$
-    30bobo$
-    31b2o$
-    31bo5$
-    38bo$
-    39b2o$
-    38b2o6$
-    45bobo$
-    46b2o$
-    46bo5$
-    53bo$
-    54b2o$
-    53b2o6$
-    60bobo$
-    61b2o$
-    61bo5$
-    68bo$
-    69b2o$
-    68b2o6$
-    75bobo$
-    76b2o$
-    76bo5$
-    83bo$
-    84b2o$
-    83b2o6$
-    90bobo$
-    91b2o$
-    91bo$
-    !
-    `)
-        }); */
+    test("Test 10-cell infinite growth with 10 steps", () => {
+        main("test/testPatterns/10_cell_infinite.rle", 10)
+        const fileContent = fs.readFileSync("test/testPatterns/10_cell_infinite_result.rle", "utf8")
+        expect(fileContent).toBe(`x=10 y=9
+4b2o$
+3bo2bo$
+4bo2b2o$
+4b2ob2o$
+5bo3bo$
+bo2b2obobo$
+o2b3ob2o$
+3b2o$
+b2o2b2o!`)
+    });
+
+    test("Test 10-cell infinite growth with 100 steps", () => {
+        main("test/testPatterns/10_cell_infinite.rle", 100)
+        const fileContent = fs.readFileSync("test/testPatterns/10_cell_infinite_result.rle", "utf8")
+        expect(fileContent).toBe(`x=18 y=28
+6b2o$
+5bob2o$
+2bobo3bo$
+b2o3bo$
+obo3b2o2bo$
+ob3o5bo$
+b4o4b2o$
+4bo5b2o$
+bo2bo4b2o$
+o3bo4b2obo$
+4ob2o4bo$
+bo4b2o$
+13b3o$
+10bo3b3o$
+9bo5bobo$
+8bo4bo$
+7b2o3bo$
+7b2o3bobo$
+7b2obobob2o$
+7b4o4bo$
+6b2o3bo3bo$
+6b3o3b2obo$
+6bo2bo3bobo$
+6bo2bo$
+10bo$
+7bo2bo$
+10bo$
+8b3o!`)
+    });
+
+    test("Test 10-cell infinite growth with 150 steps", () => {
+        main("test/testPatterns/10_cell_infinite.rle", 150)
+        const fileContent = fs.readFileSync("test/testPatterns/10_cell_infinite_result.rle", "utf8")
+        expect(fileContent).toBe(`x=16 y=28
+5b2o2$
+12b2o$
+12b2o$
+2o5bo$
+2o3b2ob2o$
+5b2o3bob2o$
+5bo4bob2o$
+5b2ob2o2bobo$
+6bo7bo$
+11bo$
+2b2o7bo2bo$
+bobo$
+2bo$
+3b2o5b2ob3o$
+3b2o4bo2bob2o$
+2bo4bobob3o$
+3b3o3bob2o$
+5bo6bo$
+6bobo$
+6bobob2o$
+8bo$
+8b2o$
+5b2o$
+5b2o$
+7b4o$
+8b3o$
+9bo!`)
+    });
+
+    test("Test gosper glider gun with 1 step", () => {
+        main("test/testPatterns/gosper_glider_gun.rle", 1)
+        const fileContent = fs.readFileSync("test/testPatterns/gosper_glider_gun_result.rle", "utf8")
+        expect(fileContent).toBe(`x=36 y=9
+23bo$
+21bobo$
+12bo7bobo11b2o$
+11b2o6bo2bo11b2o$
+2o8b2o4b2o2bobo$
+2o7b3o4b2o3bobo$
+10b2o4b2o5bo$
+11b2o$
+12bo!`)
+    });
+
+    test("Test gosper glider gun with 10 steps", () => {
+        main("test/testPatterns/gosper_glider_gun.rle", 10)
+        const fileContent = fs.readFileSync("test/testPatterns/gosper_glider_gun_result.rle", "utf8")
+        expect(fileContent).toBe(`x=36 y=9
+23b2o$
+23b2o$
+10bo4bo10b2o6b2o$
+8bobo4bo10b3o5b2o$
+2o4b2o7bo10b2o$
+2o4b2o11b2o2b2o$
+6b2o8b2o2bo2b2o$
+8bobo5b4o$
+10bo7bo!`)
+    });
 });

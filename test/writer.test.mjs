@@ -4,6 +4,7 @@ import { Pattern } from "../src/pattern.mjs";
 import { Cell } from "../src/cell.mjs";
 import { Writer } from "../src/writer.mjs";
 import fs from "node:fs"
+import { LINE_END } from "../src/constants.mjs";
 
 describe("Test life", () => {
 
@@ -41,7 +42,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePatternLine(pattern, { width: 2, x: -1, y: 2 })).toBe("bo$")
+        expect(Writer.writePatternLine(pattern, { width: 2, x: -1, y: 2 }, LINE_END)).toBe("bo$")
     });
 
     test("Death cells at the end of line are not written", () => {
@@ -52,7 +53,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePatternLine(pattern, { width: 3, x: -1, y: 2 })).toBe("bo$")
+        expect(Writer.writePatternLine(pattern, { width: 3, x: -1, y: 2 }, LINE_END)).toBe("bo$")
     });
 
 
@@ -64,7 +65,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePatternLine(pattern, { width: 5, x: -1, y: 0 })).toBe("2o2bo$")
+        expect(Writer.writePatternLine(pattern, { width: 5, x: -1, y: 0 }, LINE_END)).toBe("2o2bo$")
     });
 
     test("Write pattern with width 1", () => {
@@ -75,7 +76,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePattern(pattern)).toEqual(["o$", "o$", "o$"])
+        expect(Writer.writePattern(pattern)).toEqual(["o$", "o$", "o"])
     });
 
     test("Write pattern with width 3", () => {
@@ -86,7 +87,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePattern(pattern)).toEqual(["o$", "bo$", "2bo$"])
+        expect(Writer.writePattern(pattern)).toEqual(["o$", "bo$", "2bo"])
     });
 
     test("Write empty pattern", () => {
@@ -105,8 +106,11 @@ describe("Test life", () => {
         expect(Writer.patternToRLE(pattern)).toEqual(`x=1 y=3
 o$
 o$
-o$
-!`)
+o!`)
+    });
+
+    test("Remove empty lines with one empty line", () => {
+        expect(Writer.removeEmptyLines(["o$", "$"])).toEqual(["o2$"])
     });
 
     test("Write file content for glider pattern", () => {
@@ -119,8 +123,25 @@ o$
         expect(Writer.patternToRLE(pattern)).toEqual(`x=3 y=3
 bo$
 2bo$
-3o$
-!`)
+3o!`)
+    });
+
+    test("Remove empty lines with two empty lines between contentful lines", () => {
+        expect(Writer.removeEmptyLines(["o$", "$", "$", "o$"])).toEqual(["o3$", "o$"])
+    });
+
+    test("File content with n line changes is coded as n$", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(0, 1)
+        const cell2 = new Cell(0, 3)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        expect(Writer.patternToRLE(pattern)).toEqual(`x=1 y=4
+o$
+o2$
+o!`)
     });
 
     test("Write file content for pattern", () => {

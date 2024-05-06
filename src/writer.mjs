@@ -1,10 +1,6 @@
 import { Cell } from "./cell.mjs"
 import fs from "node:fs"
-
-const DEATH_CELL = 'b'
-const ALIVE_CELL = 'o'
-const FILE_END = '!'
-const LINE_END = '$'
+import { DEATH_CELL, ALIVE_CELL, LINE_END, FILE_END } from "./constants.mjs"
 export class Writer {
 
     static async writeRLE(filename, pattern) {
@@ -12,10 +8,39 @@ export class Writer {
         fs.writeFileSync(`${filename}.rle`, fileContent)
     }
 
+    static removeEmptyLines(lines) {
+        const result = lines.reduce((acc, cur, i) => {
+            if (cur === "$") {
+                if (i === lines.length - 1) {
+                    const lastLine = acc.lines.pop()
+                    const newLine = `${lastLine.substring(0, lastLine.length - 1)}${acc.count + 2}$`
+                    return {
+                        count: 0,
+                        lines: acc.lines.concat(newLine)
+                    }
+                }
+                return { ...acc, count: acc.count + 1 }
+            }
+            if (acc.count > 0) {
+                const lastLine = acc.lines.pop()
+                const newLine = `${lastLine.substring(0, lastLine.length - 1)}${acc.count + 1}$`
+                return {
+                    count: 0,
+                    lines: acc.lines.concat(newLine).concat(cur)
+                }
+            }
+            return {
+                ...acc, lines: acc.lines.concat(cur)
+            }
+        }, { count: 0, lines: [] })
+
+        return result.lines;
+    }
+
     static patternToRLE(pattern) {
         const heightWidth = `x=${pattern.width()} y=${pattern.height()}`
-        const lines = this.writePattern(pattern).join(`\n`)
-        return [heightWidth, lines, FILE_END].join(`\n`)
+        const joinedLines = this.removeEmptyLines(this.writePattern(pattern)).join(`\n`)
+        return [heightWidth, `\n`, joinedLines, FILE_END].join("")
     }
 
     static writePattern(pattern) {
@@ -25,7 +50,11 @@ export class Writer {
         const height = pattern.height()
         const lines = []
         for (let i = height - 1; i >= 0; i--) {
-            lines.push(this.writePatternLine(pattern, { width, x: leftMostCell.x, y: leftMostCell.y - i }))
+            lines.push(this.writePatternLine(
+                pattern,
+                { width, x: leftMostCell.x, y: leftMostCell.y - i },
+                i !== 0 ? LINE_END : ""
+            ))
         }
         return lines
     }
@@ -42,7 +71,7 @@ export class Writer {
         return this.writeCountAndTag(line, ALIVE_CELL, count)
     }
 
-    static writePatternLine(pattern, { width, x, y }) {
+    static writePatternLine(pattern, { width, x, y }, lineEnd = "") {
         let line = ""
         let count = 0
         let deathCellCount = 0
@@ -67,6 +96,6 @@ export class Writer {
         if (livingCellCount !== 0) {
             line = this.addLivingCells(line, livingCellCount)
         }
-        return line + LINE_END
+        return line + lineEnd
     }
 }

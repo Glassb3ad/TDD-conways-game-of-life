@@ -9,9 +9,9 @@ describe("Test main", () => {
         const fileContent = fs.readFileSync("test/testPatterns/blinker_result.rle", "utf8")
         fs.unlinkSync("test/testPatterns/blinker_result.rle")
         expect(fileContent).toBe(`x=1 y=3
-1o$
-1o$
-1o$
+o$
+o$
+o$
 !`)
     });
 
@@ -28,9 +28,9 @@ describe("Test main", () => {
         main("test/testPatterns/glider.rle", 1)
         const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
         expect(fileContent).toBe(`x=3 y=3
-1o1b1o$
-1b2o$
-1b1o1b$
+obo$
+b2o$
+bo$
 !`)
     });
 
@@ -38,9 +38,9 @@ describe("Test main", () => {
         main("test/testPatterns/glider.rle", 2)
         const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
         expect(fileContent).toBe(`x=3 y=3
-2b1o$
-1o1b1o$
-1b2o$
+2bo$
+obo$
+b2o$
 !`)
     });
 
@@ -48,9 +48,9 @@ describe("Test main", () => {
         main("test/testPatterns/glider.rle", 2)
         const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
         expect(fileContent).toBe(`x=3 y=3
-2b1o$
-1o1b1o$
-1b2o$
+2bo$
+obo$
+b2o$
 !`)
     });
 
@@ -58,9 +58,9 @@ describe("Test main", () => {
         main("test/testPatterns/glider.rle", 3)
         const fileContent = fs.readFileSync("test/testPatterns/glider_result.rle", "utf8")
         expect(fileContent).toBe(`x=3 y=3
-1o2b$
-1b2o$
-2o1b$
+o$
+b2o$
+2o$
 !`)
     });
 
@@ -68,9 +68,56 @@ describe("Test main", () => {
         main("test/testPatterns/beehive.rle", 6)
         const fileContent = fs.readFileSync("test/testPatterns/beehive_result.rle", "utf8")
         expect(fileContent).toBe(`x=4 y=3
-1b2o1b$
-1o2b1o$
-1b2o1b$
+b2o$
+o2bo$
+b2o$
 !`)
     });
+
+    /*     test("Test gosper glider gun with 300 steps", () => {
+            main("test/testPatterns/gosper_glider_gun.rle", 300)
+            const fileContent = fs.readFileSync("test/testPatterns/gosper_glider_gun_result.rle", "utf8")
+            expect(fileContent).toBe(`x = 93, y = 80
+    24bo$
+    22bobo$
+    12b2o6b2o12b2o$
+    11bo3bo4b2o12b2o$
+    2o8bo5bo3b2o$
+    2o8bo3bob2o4bobo$
+    10bo5bo7bo$
+    11bo3bo$
+    12b2o$
+    23bo$
+    24b2o$
+    23b2o6$
+    30bobo$
+    31b2o$
+    31bo5$
+    38bo$
+    39b2o$
+    38b2o6$
+    45bobo$
+    46b2o$
+    46bo5$
+    53bo$
+    54b2o$
+    53b2o6$
+    60bobo$
+    61b2o$
+    61bo5$
+    68bo$
+    69b2o$
+    68b2o6$
+    75bobo$
+    76b2o$
+    76bo5$
+    83bo$
+    84b2o$
+    83b2o6$
+    90bobo$
+    91b2o$
+    91bo$
+    !
+    `)
+        }); */
 });

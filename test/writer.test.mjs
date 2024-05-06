@@ -14,6 +14,13 @@ describe("Test life", () => {
         expect(Writer.writeCountAndTag(line, tag, tagCount)).toBe("3b2o")
     });
 
+    test("Don't write tag count when it is 1", () => {
+        const line = "3b"
+        const tag = "o"
+        const tagCount = 1
+        expect(Writer.writeCountAndTag(line, tag, tagCount)).toBe("3bo")
+    });
+
     test("Add dead cells to line", () => {
         const line = "3b"
         const tagCount = 2
@@ -34,8 +41,20 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePatternLine(pattern, { width: 3, x: -1, y: 2 })).toBe("1b1o1b$")
+        expect(Writer.writePatternLine(pattern, { width: 2, x: -1, y: 2 })).toBe("bo$")
     });
+
+    test("Death cells at the end of line are not written", () => {
+        const pattern = new Pattern()
+        const cell = new Cell(0, 0)
+        const cell1 = new Cell(0, 1)
+        const cell2 = new Cell(0, 2)
+        pattern.add(cell);
+        pattern.add(cell1);
+        pattern.add(cell2);
+        expect(Writer.writePatternLine(pattern, { width: 3, x: -1, y: 2 })).toBe("bo$")
+    });
+
 
     test("Write a line of pattern with multiple cells with the same status in row", () => {
         const pattern = new Pattern()
@@ -45,7 +64,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePatternLine(pattern, { width: 5, x: -1, y: 0 })).toBe("2o2b1o$")
+        expect(Writer.writePatternLine(pattern, { width: 5, x: -1, y: 0 })).toBe("2o2bo$")
     });
 
     test("Write pattern with width 1", () => {
@@ -56,7 +75,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePattern(pattern)).toEqual(["1o$", "1o$", "1o$"])
+        expect(Writer.writePattern(pattern)).toEqual(["o$", "o$", "o$"])
     });
 
     test("Write pattern with width 3", () => {
@@ -67,7 +86,7 @@ describe("Test life", () => {
         pattern.add(cell);
         pattern.add(cell1);
         pattern.add(cell2);
-        expect(Writer.writePattern(pattern)).toEqual(["1o2b$", "1b1o1b$", "2b1o$"])
+        expect(Writer.writePattern(pattern)).toEqual(["o$", "bo$", "2bo$"])
     });
 
     test("Write empty pattern", () => {
@@ -84,9 +103,9 @@ describe("Test life", () => {
         pattern.add(cell1);
         pattern.add(cell2);
         expect(Writer.patternToRLE(pattern)).toEqual(`x=1 y=3
-1o$
-1o$
-1o$
+o$
+o$
+o$
 !`)
     });
 
@@ -98,8 +117,8 @@ describe("Test life", () => {
         pattern.add(new Cell(1, 2));
         pattern.add(new Cell(2, 2));
         expect(Writer.patternToRLE(pattern)).toEqual(`x=3 y=3
-1b1o1b$
-2b1o$
+bo$
+2bo$
 3o$
 !`)
     });

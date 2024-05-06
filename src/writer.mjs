@@ -31,7 +31,7 @@ export class Writer {
     }
 
     static writeCountAndTag(line, tag, count) {
-        return `${line}${count}${tag}`
+        return count > 1 ? `${line}${count}${tag}` : `${line}${tag}`
     }
 
     static addDeathCells(line, count) {
@@ -63,9 +63,6 @@ export class Writer {
                 }
             }
             count++;
-        }
-        if (deathCellCount !== 0) {
-            line = this.addDeathCells(line, deathCellCount)
         }
         if (livingCellCount !== 0) {
             line = this.addLivingCells(line, livingCellCount)

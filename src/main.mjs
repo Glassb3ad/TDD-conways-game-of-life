@@ -10,5 +10,9 @@ export const main = (filePath, steps) => {
 
 const filePath = process.argv[2]
 const steps = Number.parseInt(process.argv[3])
-if (!(filePath && steps)) return "Must give both file path and steps"
-main(filePath, steps)
+if ((filePath && steps)) {
+    main(filePath, steps)
+}
+else {
+    console.log("Must give both file path and steps")
+}

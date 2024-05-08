@@ -1,4 +1,28 @@
-x = 16, y = 28, rule = B3/S23
-5b2o2$12b2o$12b2o$2o5bo$2o3b2ob2o$5b2o3bob2o$5bo4bob2o$5b2ob2o2bobo$6b
-o7bo$11bo$2b2o7bo2bo$bobo$2bo$3b2o5b2ob3o$3b2o4bo2bob2o$2bo4bobob3o$3b
-3o3bob2o$5bo6bo$6bobo$6bobob2o$8bo$8b2o$5b2o$5b2o$7b4o$8b3o$9bo!
+x=16 y=28
+5b2o2$
+12b2o$
+12b2o$
+2o5bo$
+2o3b2ob2o$
+5b2o3bob2o$
+5bo4bob2o$
+5b2ob2o2bobo$
+6bo7bo$
+11bo$
+2b2o7bo2bo$
+bobo$
+2bo$
+3b2o5b2ob3o$
+3b2o4bo2bob2o$
+2bo4bobob3o$
+3b3o3bob2o$
+5bo6bo$
+6bobo$
+6bobob2o$
+8bo$
+8b2o$
+5b2o$
+5b2o$
+7b4o$
+8b3o$
+9bo!
